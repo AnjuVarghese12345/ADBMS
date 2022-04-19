@@ -13,4 +13,6 @@ insert into staff values(2,'Mary','s/w tester','MCA','contract',45000,'A02');
 insert into staff values(3,'John','s/w engineer','doctorate','regular',70000,'A03');
 insert into staff values(4,'Mark','system administrator','CSE','regular',55000,'A01');
 insert into staff values(5,'Lilly','s/w engineer','CSE','regular',25000,'A04');
+select count(*)  from staff where type_appoi='contract'; 
+select  avg(salary) from staff where type_appoi='contract';
 
