@@ -1,18 +1,24 @@
-create database college;
-use college;
-create table dept(dept_id varchar(20) primary key,dept_name varchar(30));
-create table staff(staff_id int primary key,sname varchar(30),desig varchar(30),quali varchar(30),type_appoi varchar(30),salary int,dept_id varchar(30),foreign key(dept_id)references dept(dept_id));
-insert into dept values('A01','CS');
-insert into dept values('A02','CA');
-insert into dept values('A03','CA');
-insert into dept values('A04','CS');
-insert into dept values('A05','CA');
+create database emp ;
+use emp;
+create table staff(staff_id int primary key,sname varchar(20),designation varchar(50),qualification varchar(50),type_of_appointment varchar(50),salary int(20),dept_id int,foreign key(dept_id) references department(dept_id));
+create table department(dept_id int primary key,dept_name varchar(100));
+desc staff;
 
-insert into staff values(1,'Smith','s/w engineer','MCA','contract',25000,'A05');
-insert into staff values(2,'Mary','s/w tester','MCA','contract',45000,'A02');
-insert into staff values(3,'John','s/w engineer','doctorate','regular',70000,'A03');
-insert into staff values(4,'Mark','system administrator','CSE','regular',55000,'A01');
-insert into staff values(5,'Lilly','s/w engineer','CSE','regular',25000,'A04');
-select count(*)  from staff where type_appoi='contract'; 
-select  avg(salary) from staff where type_appoi='contract';
+insert into staff values(1,"Ramesh","professor","doctorate","regular",12000,2),
+(2,"Sam","asst professor","doctorate","contract",15000,3),
+                     (3,"Ram","professor","mca","regular",12000,2),
+                        (4,"Bobby","programmer","bsc","contract",10000,4),
+                      (5,"Rocky","helper","plus two","regular",7000,2);
+insert into department values(2,'mca');
+insert into department values(3,'mtech');
+insert into department values(4,'mba');
+
+select * from department;
+select * from staff;
+select count(type_of_appointment) from staff where type_of_appointment="contract";
+#select department.dept_name from department innerjoin (staff) on department.dept_id=staff.staff_id where max
+select avg(staff.salary),department.dept_name from staff,department where department.dept_id=staff.dept_id and staff.type_of_appointment="contract" group by staff.dept_id;
+select max(staff.salary),staff.sname,department.dept_name from staff,department where staff.dept_id=department.dept_id  group by staff.dept_id order by staff.salary desc;
+	
+
 
