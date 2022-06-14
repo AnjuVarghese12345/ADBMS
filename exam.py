@@ -17,3 +17,10 @@ for i in coll.find({"Department":"MCA"}).sort("Lab_mark.External",-1).limit(2):
 print("Q.05")
 for i in coll.find({"Name":{"$regex":'^A'}},{"Name":1,"Department":1,"_id":1}):
 	print(str(i["_id"])+" "+i["Name"]+" "+i["Department"])
+print("Q.06")
+coll.update_one({"_id":4},{"$set":{"Vaccination_status":"NOT vaccinated"}})
+print("Updated!!!")
+
+print("Q.07")
+for i in coll.find({},{"Name":1}).sort("Lab_mark.External",-1):
+	print(i["Name"])
